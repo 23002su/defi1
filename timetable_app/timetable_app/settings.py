@@ -55,8 +55,8 @@ ROOT_URLCONF = 'timetable_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'templates'],  # Add the global templates directory
+        'APP_DIRS': True,  # Also look for templates in each app's templates/ directory
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
