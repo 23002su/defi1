@@ -1,5 +1,5 @@
 from django import forms
-from .models import Groupe, Matiere, Filiere,Enseignant
+from .models import Groupe, Matiere, Filiere,Enseignant,Disponibilite
 
 class FiliereForm(forms.ModelForm):
     class Meta:
@@ -35,4 +35,6 @@ class EnseignantForm(forms.ModelForm):
         widgets = {
             'nom': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrez le nom de l\'enseignant'}),
             'enseignant_id': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrez l\'ID de l\'enseignant'}),
-        }             
+        }   
+        
+                

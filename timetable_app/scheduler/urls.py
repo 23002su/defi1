@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from . import views
 
 urlpatterns = [
@@ -19,4 +21,5 @@ urlpatterns = [
     path('enseignants/creer/', views.creer_enseignant, name='creer_enseignant'),
     path('enseignants/modifier/<int:pk>/', views.modifier_enseignant, name='modifier_enseignant'),
     path('enseignants/supprimer/<int:pk>/', views.supprimer_enseignant, name='supprimer_enseignant'),
-]
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

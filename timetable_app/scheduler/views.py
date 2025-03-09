@@ -1,6 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import GroupeForm, MatiereForm, FiliereForm, EnseignantForm
-from .models import Groupe, Matiere, Filiere, Enseignant
+from .forms import GroupeForm, MatiereForm, FiliereForm, EnseignantForm, DisponibiliteForm
+from .models import Matiere, Groupe, Charge, Affectation, Disponibilite, Chevauchement, Enseignant
+from django.http import JsonResponse
+from ortools.linear_solver import pywraplp
+import openpyxl
+import pandas as pd
+import os
+from django.conf import settings
+from django.contrib import messages
+
+# Define paths
+
 
 def home(request):
     """
@@ -138,4 +148,5 @@ def supprimer_enseignant(request, pk):
         enseignant.delete()
         return redirect('liste_enseignants')
     return render(request, 'enseignants/enseignant_confirm_delete.html', {'enseignant': enseignant})
+
 
