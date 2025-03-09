@@ -16,15 +16,16 @@
     {% endif %}
     <form method="POST">
         {% csrf_token %}
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" name="username" id="username" required><br>
-
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" required><br>
-
-        <label for="password2">Confirmer le mot de passe</label>
-        <input type="password" name="password2" id="password2" required><br>
-
+        <input type="text" name="username" required placeholder="Nom d'utilisateur" />
+        <input type="password" name="password" required placeholder="Mot de passe" />
+        <input type="password" name="password2" required placeholder="Confirmer le mot de passe" />
+        
+        <select name="category" required>
+            <option value="admin">Admin</option>
+            <option value="enseignant">Enseignant</option>
+            <option value="etudiant">Étudiant</option>
+        </select>
+    
         <button type="submit">S'inscrire</button>
     </form>
     <p>Déjà un compte ? <a href="{% url 'login' %}">Se connecter</a></p>
