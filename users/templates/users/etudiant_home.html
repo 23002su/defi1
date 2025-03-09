@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Étudiant</title>
+</head>
+<body>
+    <h1>Bienvenue Étudiant, {{ username }}</h1>
+    <p>Page d'accueil réservée aux étudiants.</p>
+    <a href="{% url 'logout' %}">Se déconnecter</a>
+</body>
+</html>
