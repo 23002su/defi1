@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Supprimer la Matière</h2>
+<p>Êtes-vous sûr de vouloir supprimer "{{ matiere.nom }}" ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+    <a href="{% url 'liste_matieres' %}">Annuler</a>
+</form>
+{% endblock %}

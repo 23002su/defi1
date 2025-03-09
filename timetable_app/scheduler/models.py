@@ -1,11 +1,18 @@
 from django.db import models
 
+
+class Filiere(models.Model):
+    nom = models.CharField(max_length=50, unique=True)  # Nom de la filière (ex: TC, DWM, DSI, RSS)
+
+    def __str__(self):
+        return self.nom
+
 class Matiere(models.Model):
     code = models.CharField(max_length=10, unique=True)  # Code de la matière (ex: MATH101)
     nom = models.CharField(max_length=100)               # Nom de la matière (ex: Mathématiques)
     credits = models.IntegerField()                      # Nombre de crédits
     semestre = models.IntegerField()                     # Semestre (1, 2, 3, 4, 5, 6)
-    filiere = models.CharField(max_length=10)            # Filière (TC, DWM, DSI, RSS)
+    filiere = models.ForeignKey(Filiere, on_delete=models.CASCADE, related_name='matieres')  # Relation avec Filiere
 
     def __str__(self):
         return f"{self.code} - {self.nom}"
