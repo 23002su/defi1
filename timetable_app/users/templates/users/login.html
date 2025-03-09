@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <h2>Connexion</h2>
+
+            {% if messages %}
+                <ul class="message-list">
+                    {% for message in messages %}
+                        <li class="error-message">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+                    <input 
+                        type="text" 
+                        name="username"
+                        id="username" 
+                        placeholder="Nom d'utilisateur"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input 
+                        type="password" 
+                        name="password"
+                        id="password" 
+                        placeholder="Mot de passe"
+                        required
+                    >
+                </div>
+
+ 
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <p>Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+
+    {% if category == 'enseignant' or category == 'etudiant' %}
+        <p style="color: orange;">
+            Vous avez été inscrit avec un mot de passe temporaire. Connectez-vous et pensez à le changer dès que possible !
+        </p>
+    {% endif %}
+ 
+                
+
+    
+
+</body>
+</html>
