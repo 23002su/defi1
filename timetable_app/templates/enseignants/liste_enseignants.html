@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <h1>Liste des Enseignants</h1>
 <a href="{% url 'creer_enseignant' %}">Créer un nouvel enseignant</a>
 <ul>
@@ -9,3 +11,4 @@
         </li>
     {% endfor %}
 </ul>
+{% endblock %}

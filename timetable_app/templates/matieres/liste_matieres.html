@@ -4,6 +4,7 @@
 <h2>Liste des Matières</h2>
 <a href="{% url 'creer_matiere' %}">Créer une Nouvelle Matière</a>
 <ul>
+    {% if matieres %}
     {% for matiere in matieres %}
     <li>
         {{ matiere.code }} - {{ matiere.nom }} ({{ matiere.credits }} crédits, Semestre {{ matiere.semestre }}, Filière {{ matiere.filiere.nom }})
@@ -11,5 +12,8 @@
         <a href="{% url 'supprimer_matiere' matiere.pk %}">Supprimer</a>
     </li>
     {% endfor %}
+    {% else %}
+    <li>Aucune matière n'a été trouvée.</li>
+    {% endif %}
 </ul>
 {% endblock %}

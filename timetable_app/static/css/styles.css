@@ -123,11 +123,15 @@ body {
 .sidebar.active {
   width: 250px;
 }
+.sidebar.active ~ .content{
+  margin-left: 1250px;
+}
 
 .sidebar:not(.active) .sidebar-header,
 .sidebar:not(.active) .link-text {
   display: none;
 }
+
 
 .sidebar-header {
   padding: 0 20px;
