@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrement</title>
+</head>
+<body>
+    <h2>Enregistrement</h2>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: red;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" name="username" id="username" required><br>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <label for="password2">Confirmer le mot de passe</label>
+        <input type="password" name="password2" id="password2" required><br>
+
+        <button type="submit">S'inscrire</button>
+    </form>
+    <p>Déjà un compte ? <a href="{% url 'login' %}">Se connecter</a></p>
+</body>
+</html>
