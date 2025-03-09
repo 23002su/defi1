@@ -1,0 +1,11 @@
+<h1>Liste des Enseignants</h1>
+<a href="{% url 'creer_enseignant' %}">Créer un nouvel enseignant</a>
+<ul>
+    {% for enseignant in enseignants %}
+        <li>
+            {{ enseignant.nom }} ({{ enseignant.enseignant_id }})
+            <a href="{% url 'modifier_enseignant' enseignant.pk %}">Modifier</a>
+            <a href="{% url 'supprimer_enseignant' enseignant.pk %}">Supprimer</a>
+        </li>
+    {% endfor %}
+</ul>

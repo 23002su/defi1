@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Supprimer le Groupe</h2>
+<p>Êtes-vous sûr de vouloir supprimer "{{ groupe.nom }}" ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+    <a href="{% url 'liste_groupes' %}">Annuler</a>
+</form>
+{% endblock %}
