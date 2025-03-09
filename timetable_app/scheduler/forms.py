@@ -1,5 +1,5 @@
 from django import forms
-from .models import Groupe, Matiere, Filiere,Enseignant,Disponibilite
+from .models import Groupe, Matiere, Filiere,Enseignant
 
 class FiliereForm(forms.ModelForm):
     class Meta:

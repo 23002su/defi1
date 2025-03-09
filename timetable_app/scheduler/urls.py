@@ -21,5 +21,6 @@ urlpatterns = [
     path('enseignants/creer/', views.creer_enseignant, name='creer_enseignant'),
     path('enseignants/modifier/<int:pk>/', views.modifier_enseignant, name='modifier_enseignant'),
     path('enseignants/supprimer/<int:pk>/', views.supprimer_enseignant, name='supprimer_enseignant'),
+    path('generate-schedule/', views.schedule_view, name='generate_schedule'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

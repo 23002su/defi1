@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import GroupeForm, MatiereForm, FiliereForm, EnseignantForm, DisponibiliteForm
+from .forms import GroupeForm, MatiereForm, FiliereForm, EnseignantForm
 from .models import Matiere, Groupe, Charge, Affectation, Disponibilite, Chevauchement, Enseignant
 from django.http import JsonResponse
 from ortools.linear_solver import pywraplp
@@ -8,7 +8,7 @@ import pandas as pd
 import os
 from django.conf import settings
 from django.contrib import messages
-
+from .ortools_model import ScheduleSolver
 # Define paths
 
 
@@ -150,3 +150,13 @@ def supprimer_enseignant(request, pk):
     return render(request, 'enseignants/enseignant_confirm_delete.html', {'enseignant': enseignant})
 
 
+def schedule_view(request):
+    if request.method == 'GET':
+        data_file = os.path.join(settings.BASE_DIR, 'scheduler', 'data', 'Données.xlsx')
+        solver = ScheduleSolver(data_file)
+        solver.load_data()
+        if solver.solve():
+            return JsonResponse({'status': 'success', 'message': 'Schedule generated successfully.'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'No solution found.'})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
