@@ -27,8 +27,6 @@ def register(request):
             messages.error(request, "Les mots de passe ne correspondent pas")
 
     return render(request, 'users/register.html')
-
-# Page de connexion
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -39,8 +37,9 @@ def login_view(request):
         if user is not None:
             login(request, user)
             
-            # Stocker la catégorie de l'utilisateur dans la session
-            request.session['category'] = user.category  # Utilisation de la catégorie du modèle CustomUser
+            # Stocker la catégorie et le nom d'utilisateur dans la session
+            request.session['category'] = user.category  # Catégorie de l'utilisateur
+            request.session['user'] = user.username  # Nom d'utilisateur
 
             # Redirection selon la catégorie de l'utilisateur
             if user.category == 'admin':
@@ -53,25 +52,28 @@ def login_view(request):
             messages.error(request, "Nom d'utilisateur ou mot de passe incorrect")
 
     return render(request, 'users/login.html')
+
 # Page d'accueil après connexion
 def home(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
+    # Récupérer les valeurs de la session
     category = request.session.get('category', 'etudiant')  # Par défaut 'etudiant'
+    user = request.session.get('user', request.user.username)  # Par défaut le nom de l'utilisateur connecté
     
     if category == 'admin':
-        return render(request, 'users/admin_home.html', {'username': request.user.username})
+        return render(request, 'users/admin_home.html', {'username': user, 'category': category})
     elif category == 'enseignant':
-        return render(request, 'users/enseignant_home.html', {'username': request.user.username})
+        return render(request, 'users/enseignant_home.html', {'username': user, 'category': category})
     else:
-        return render(request, 'users/etudiant_home.html', {'username': request.user.username})
+        return render(request, 'users/etudiant_home.html', {'username': user, 'category': category})
+
 # Déconnexion
 def logout_view(request):
     logout(request)
     request.session.flush()  # Réinitialiser la session
     return redirect('login')
-
 # Page d'accueil pour les admin
 def admin_home(request):
     if not request.user.is_authenticated:
