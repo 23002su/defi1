@@ -1,7 +1,0 @@
-<h1>Supprimer l'enseignant</h1>
-<p>Êtes-vous sûr de vouloir supprimer l'enseignant "{{ enseignant.nom }}" ?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Oui, supprimer</button>
-</form>
-<a href="{% url 'liste_enseignants' %}">Annuler</a>
