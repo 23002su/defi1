@@ -1,0 +1,7 @@
+<h1>{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} Enseignant</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+<a href="{% url 'liste_enseignants' %}">Annuler</a>
