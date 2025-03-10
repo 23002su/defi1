@@ -9,6 +9,6 @@ class CustomUser(AbstractUser):
     ]
     
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='etudiant')
-
+    is_password_temp = models.BooleanField(default=True)
     def __str__(self):
         return self.username

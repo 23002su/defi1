@@ -27,6 +27,13 @@
 
         <button type="submit">Se connecter</button>
     </form>
+
     <p>Pas encore de compte ? <a href="{% url 'register' %}">S'inscrire</a></p>
+
+    {% if category == 'enseignant' or category == 'etudiant' %}
+        <p style="color: orange;">
+            Vous avez été inscrit avec un mot de passe temporaire. Connectez-vous et pensez à le changer dès que possible !
+        </p>
+    {% endif %}
 </body>
 </html>
